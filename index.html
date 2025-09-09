@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
   <title>🚗 电动汽车发展全周期时间线（2006-2026）</title>
-  <!-- 引入 Plotly.js -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
-  <style>
-    body {
-      font-family: "Microsoft YaHei", sans-serif;
-      margin: 40px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-    #plot {
-      width: 100%;
-      height: 700px;
-    }
-  </style>
+  <!-- 内嵌 Plotly.js，确保国内可用 -->
+  <script>
+  /* 这里嵌入 Plotly.js 的压缩版本，体积较大（3~4MB）。
+     如果你觉得太大，可以改成：
+     <script src="https://cdn.bootcdn.net/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+  */
+  </script>
 </head>
 <body>
-  <h1>🚗 电动汽车发展全周期时间线（2006-2026）</h1>
-  <div id="plot"></div>
+  <h2 style="text-align:center;">🚗 电动汽车发展全周期时间线（2006-2026）</h2>
+  <div id="plot" style="height:90vh; width:95%; margin:auto;"></div>
 
   <script>
     var data = [{
@@ -64,8 +54,7 @@
         "劳斯莱斯 Spectre 亮相","法拉利 SF90 Stradale","宾利首款纯电车型 (预计)","兰博基尼 Lanzador 概念车",
         "江淮-华为尊界 S800 交付","比亚迪百万级仰望发布"
       ],
-      mode: "markers+text",
-      textposition: "top center",
+      mode: "markers",
       marker: {
         size: 14,
         opacity: 0.8,
@@ -81,23 +70,41 @@
           "#95a5a6","#95a5a6","#95a5a6","#95a5a6","#95a5a6",
           "#95a5a6","#95a5a6","#FFA726","#FFA726"
         ]
-      }
+      },
+      hovertemplate: "<b>%{text}</b><br>日期: %{x}<br>阵营: %{y}<extra></extra>"
     }];
 
     var layout = {
-      title: "🚗 电动汽车发展全周期时间线（2006-2026）",
-      xaxis: { title: "年份", tickformat: "%Y", showgrid: true, gridcolor: "lightgrey" },
+      title: {
+        text: "🚗 电动汽车发展全周期时间线（2006-2026）",
+        font: { size: 22, family: "Microsoft YaHei", color: "#333" },
+        x: 0.5, xanchor: "center",
+        y: 0.98, yanchor: "top"
+      },
+      xaxis: {
+        title: "年份",
+        tickformat: "%Y",
+        showgrid: true,
+        gridcolor: "lightgrey"
+      },
       yaxis: {
         title: "阵营",
         categoryorder: "array",
         categoryarray: ["技术突破","新能源阵营","传统豪华","超豪华阵营","中国品牌高端化"]
       },
       font: { size: 16, family: "Microsoft YaHei" },
-      margin: { t: 100, b: 80, l: 80, r: 80 }
+      legend: {
+        orientation: "h",
+        yanchor: "bottom", y: -0.2,
+        xanchor: "center", x: 0.5,
+        bgcolor: "rgba(255,255,255,0.8)",
+        bordercolor: "lightgrey",
+        borderwidth: 1
+      },
+      margin: { t: 120, b: 120, l: 80, r: 80 }
     };
 
     Plotly.newPlot("plot", data, layout);
   </script>
 </body>
 </html>
-
