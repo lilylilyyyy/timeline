@@ -2,12 +2,32 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>测试页面</title>
+  <title>电动汽车发展时间线</title>
+  <!-- 引入 Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <h1 style="text-align:center; color:green; margin-top:100px;">
-    ✅ GitHub Pages 部署成功！
-  </h1>
-  <p style="text-align:center;">如果你能看到这段文字，说明 Pages 已经正常工作。</p>
+  <h2 style="text-align:center;">🚗 电动汽车发展全周期时间线</h2>
+  <!-- 图表容器 -->
+  <div id="plot" style="width:90%;max-width:1000px;height:600px;margin:auto;"></div>
+
+  <script>
+    var data = [{
+      x: ["2006-07-01", "2008-02-01", "2012-06-01"],
+      y: ["技术突破", "技术突破", "技术突破"],
+      text: ["特斯拉证明锂离子电池可行性", "Roadster", "Model S OTA 升级"],
+      mode: "markers+text",
+      textposition: "top center",
+      marker: { size: 14, color: "#FF6B6B" }
+    }];
+
+    var layout = {
+      title: "电动汽车发展简版演示",
+      xaxis: { title: "年份" },
+      yaxis: { title: "阵营" }
+    };
+
+    Plotly.newPlot('plot', data, layout);
+  </script>
 </body>
 </html>
